@@ -1,12 +1,12 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frost & Flour REST API",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "node --test"
+    "dev": "node --watch server.js",
+    "test": "node --check server.js"
   },
   "keywords": [],
   "author": "",
