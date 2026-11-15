@@ -1,0 +1,124 @@
+.profile-page {
+  min-height: 100vh;
+  padding: 60px 20px 40px;
+  background: var(--cream, #fffaf5);
+  color: var(--plum, #633d54);
+}
+
+.profile-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.profile-container h1 {
+  margin: 0 0 32px;
+  color: var(--plum, #633d54);
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -1.2px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 20px;
+  padding: 34px;
+  box-shadow: 0 14px 28px rgba(205, 132, 160, .13);
+}
+
+.profile-field {
+  margin-bottom: 24px;
+}
+
+.profile-field:last-child {
+  margin-bottom: 0;
+}
+
+.profile-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--plum, #633d54);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.profile-field p {
+  margin: 0;
+  padding: 12px 16px;
+  border: 2px solid var(--pink, #f2a2c3);
+  border-radius: 16px;
+  color: var(--plum, #633d54);
+  background: #fffbf8;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--muted-plum, #806174);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.error-message {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 34px;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(205, 132, 160, .13);
+}
+
+.error-message h2 {
+  margin: 0 0 12px;
+  color: var(--pink-dark, #b52e68);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.8px;
+}
+
+.error-message p {
+  margin: 0 0 24px;
+  color: var(--muted-plum, #806174);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.retry-button {
+  padding: 11px 28px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--plum, #633d54);
+  background: var(--pink, #f2a2c3);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background: #ed91b7;
+}
+
+.retry-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 40px 16px 30px;
+  }
+  
+  .profile-container h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  
+  .profile-card {
+    padding: 24px 20px;
+  }
+}

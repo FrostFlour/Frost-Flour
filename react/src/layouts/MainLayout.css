@@ -1,0 +1,134 @@
+:root {
+  --plum: #633d54;
+  --muted-plum: #806174;
+  --pink: #f2a2c3;
+  --pink-dark: #b52e68;
+  --cream: #fffaf5;
+  --panel-pink: #ffe4ef;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--cream);
+}
+
+.main-header {
+  background: white;
+  border-bottom: 3px solid var(--pink);
+  box-shadow: 0 4px 12px rgba(205, 132, 160, .1);
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--plum);
+}
+
+.logo::before {
+  content: '🧁';
+  font-size: 24px;
+  line-height: 1;
+}
+
+.logo h1 {
+  margin: 0;
+  color: var(--plum);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -.5px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.main-nav a {
+  position: relative;
+  padding: 8px 4px;
+  text-decoration: none;
+  color: var(--muted-plum);
+  font-size: 13px;
+  font-weight: 800;
+  transition: color 0.2s;
+}
+
+.main-nav a:hover {
+  color: var(--pink-dark);
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--pink);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.main-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.main-content {
+  flex: 1;
+}
+
+.main-footer {
+  background: var(--panel-pink);
+  border-top: 2px solid var(--pink);
+  padding: 24px 32px;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-container p {
+  margin: 0;
+  color: var(--muted-plum);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 14px 20px;
+  }
+  
+  .logo h1 {
+    font-size: 18px;
+  }
+  
+  .main-nav {
+    gap: 18px;
+  }
+  
+  .main-nav a {
+    font-size: 12px;
+  }
+  
+  .main-footer {
+    padding: 20px;
+  }
+}
