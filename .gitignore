@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Secrets (database URL, passwords): never commit these
+.env
+.env.local
+*.local
+!.env.example
+
+# Logs
+logs/*.log
+npm-debug.log*
+
+# Build output
+dist/
+
+# Uploaded files (keep the folder, not the images)
+nodejs/uploads/products/*
+!nodejs/uploads/products/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
