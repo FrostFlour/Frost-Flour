@@ -3,7 +3,9 @@ require("dotenv").config();
 const http = require('node:http');
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const { connectDatabase, disconnectDatabase, isDatabaseConnected } = require('./src/config/db');
+const authRoute = require('./src/routes/authRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,10 +19,13 @@ const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,https
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', database: isDatabaseConnected() ? 'connected' : 'disconnected' });
 });
+
+app.use('/api/auth', authRoute);
 
 async function start() {
   await connectDatabase();
