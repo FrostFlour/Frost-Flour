@@ -7,14 +7,8 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
   const loadProfile = async () => {
     try {
-      setLoading(true);
-      setError(null);
       const data = await getMe();
       setUser(data.user);
     } catch (err) {
@@ -23,6 +17,19 @@ export default function ProfilePage() {
       setLoading(false);
     }
   };
+
+  const retryProfile = () => {
+    setLoading(true);
+    setError(null);
+    loadProfile();
+  };
+
+  useEffect(() => {
+    getMe()
+      .then((data) => setUser(data.user))
+      .catch((err) => setError(err.message || "Failed to load profile"))
+      .finally(() => setLoading(false));
+  }, []);
 
   if (loading) {
     return (
@@ -41,7 +48,7 @@ export default function ProfilePage() {
           <div className="error-message">
             <h2>Error</h2>
             <p>{error}</p>
-            <button onClick={loadProfile} className="retry-button">
+            <button onClick={retryProfile} className="retry-button">
               Try Again
             </button>
           </div>
