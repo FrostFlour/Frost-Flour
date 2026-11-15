@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const http = require('node:http');
 const express = require('express');
@@ -45,6 +45,6 @@ async function start() {
 }
 
 start().catch((err) => {
-  console.error('Failed to start the server:', err.message);
+  console.error("Failed to start the server:", err.message);
   process.exit(1);
 });
