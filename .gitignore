@@ -2,10 +2,14 @@
 node_modules/
 
 # Secrets (database URL, passwords): never commit these
+# Ignores every .env file (nodejs/.env, nodejs/.env.atlas, ...) in any folder,
+# except the safe ones listed with "!" below.
 .env
-.env.local
+.env.*
 *.local
 !.env.example
+!react/.env.development
+!react/.env.production
 
 # Logs
 logs/*.log
