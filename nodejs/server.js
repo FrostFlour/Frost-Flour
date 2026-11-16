@@ -6,6 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { connectDatabase, disconnectDatabase, isDatabaseConnected } = require('./src/config/db');
 const authRoute = require('./src/routes/authRoute');
+const userRoute = require('./src/routes/user.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoute);
+app.use('/api/users', userRoute);
 
 async function start() {
   await connectDatabase();

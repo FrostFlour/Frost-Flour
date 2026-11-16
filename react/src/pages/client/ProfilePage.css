@@ -34,6 +34,47 @@
   margin-bottom: 0;
 }
 
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-header h1 {
+  margin: 0;
+}
+
+.edit-button {
+  padding: 11px 24px;
+  border: 0;
+  border-radius: 24px;
+  color: white;
+  background: var(--plum, #633d54);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+  background: #7a5269;
+}
+
+.edit-button:active {
+  transform: translateY(1px);
+}
+
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .profile-field label {
   display: block;
   margin-bottom: 7px;
@@ -53,6 +94,96 @@
   background: #fffbf8;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.email-field {
+  background: #f8f8f8;
+  color: #888;
+}
+
+.edit-input,
+.edit-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--pink, #f2a2c3);
+  border-radius: 16px;
+  color: var(--plum, #633d54);
+  background: white;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-input:focus,
+.edit-textarea:focus {
+  outline: none;
+  border-color: var(--plum, #633d54);
+  box-shadow: 0 0 0 3px rgba(99, 61, 84, 0.1);
+}
+
+.edit-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid var(--pink, #f2a2c3);
+}
+
+.cancel-button {
+  padding: 11px 24px;
+  border: 2px solid var(--pink, #f2a2c3);
+  border-radius: 24px;
+  color: var(--plum, #633d54);
+  background: white;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-button:hover {
+  background: var(--pink, #f2a2c3);
+}
+
+.cancel-button:active {
+  transform: translateY(1px);
+}
+
+.cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.save-button {
+  padding: 11px 24px;
+  border: 0;
+  border-radius: 24px;
+  color: white;
+  background: var(--plum, #633d54);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-button:hover {
+  background: #7a5269;
+}
+
+.save-button:active {
+  transform: translateY(1px);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .loading {
@@ -98,6 +229,28 @@
   font-weight: 900;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.change-password-link {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.change-password-button {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 2px solid var(--pink, #f2a2c3);
+  border-radius: 24px;
+  color: var(--plum, #633d54);
+  background: white;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.change-password-button:hover {
+  background: var(--pink, #f2a2c3);
 }
 
 .retry-button:hover {
