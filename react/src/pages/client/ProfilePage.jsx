@@ -36,7 +36,11 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
-    loadProfile();
+    const initializeProfile = async () => {
+      await loadProfile();
+    };
+
+    initializeProfile();
   }, []);
 
   const handleInputChange = (e) => {
