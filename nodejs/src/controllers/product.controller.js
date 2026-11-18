@@ -4,6 +4,15 @@ const AppError = require("../utils/AppError");
 const productRepository = require("../repositories/product.repository");
 const categoryRepository = require("../repositories/category.repository");
 
+exports.listAvailable = async (req, res, next) => {
+  try {
+    const products = await productRepository.findAvailable();
+    res.json({ products });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // ---------------------------------------------------------------------------
 // US-14: an Agent creates a product (with an optional image).
 // Route: POST /api/products   (multipart/form-data, read by middlewares/upload.js)
