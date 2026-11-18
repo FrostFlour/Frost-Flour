@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../api/user.api";
 import "./ChangePasswordPage.css";
 
 export default function ChangePasswordPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -111,10 +113,10 @@ export default function ChangePasswordPage() {
               <button
                 type="button"
                 className="cp-cancel-button"
-                onClick={() => setFormData({ currentPassword: "", newPassword: "", confirmPassword: "" })}
+                onClick={() => navigate("/profile")}
                 disabled={loading}
               >
-                Reset
+                Cancel
               </button>
               <button
                 type="submit"

@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET || "development-cookie-secret"));
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
@@ -23,6 +23,7 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/categories", categoryRoutes); // US-11 / US-14
 app.use("/api/products", productRoutes); // US-14
+app.use("/api/cart", require("./routes/cart.routes"));
 
 // US-14: serve the uploaded product images
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));

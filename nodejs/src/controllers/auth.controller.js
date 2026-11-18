@@ -5,6 +5,7 @@ const {
   createToken,
   setTokenCookie,
   clearTokenCookie,
+  clearCartCookie,
 } = require("../utils/token");
 
 const normalizeEmail = (email) => String(email).toLowerCase().trim();
@@ -69,6 +70,7 @@ exports.login = async (req, res, next) => {
 
 exports.logout = (req, res) => {
   clearTokenCookie(res);
+  clearCartCookie(res);
   res.json({ message: "Logged out" });
 };
 
