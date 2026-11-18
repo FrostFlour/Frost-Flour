@@ -3,6 +3,10 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/authRoute");
 const userRoutes = require("./routes/user.routes");
+const categoryRoutes = require("./routes/category.routes"); // US-11 / US-14
+const productRoutes = require("./routes/product.routes"); // US-14
+const errorHandler = require("./middlewares/errorHandler");
+const path = require("node:path");
 
 const app = express();
 
@@ -17,21 +21,13 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoutes);
 
-app.use((err, req, res, next) => {
-  if (err.name === "ValidationError") {
-    return res.status(400).json({ message: err.message });
-  }
+app.use("/api/categories", categoryRoutes); // US-11 / US-14
+app.use("/api/products", productRoutes); // US-14
 
-  if (err.code === 11000) {
-    return res.status(409).json({ message: "Email already registered" });
-  }
+// US-14: serve the uploaded product images
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
-  const status = err.status || 500;
-  if (status === 500) console.error(err);
-
-  res.status(status).json({
-    message: status === 500 ? "Something went wrong" : err.message,
-  });
-});
+// The error handler moved to middlewares/errorHandler.js (shared with server.js)
+app.use(errorHandler);
 
 module.exports = app;

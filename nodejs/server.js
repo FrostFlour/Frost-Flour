@@ -7,6 +7,10 @@ const cookieParser = require('cookie-parser');
 const { connectDatabase, disconnectDatabase, isDatabaseConnected } = require('./src/config/db');
 const authRoute = require('./src/routes/authRoute');
 const userRoute = require('./src/routes/user.routes');
+const categoryRoute = require('./src/routes/category.routes'); // US-11 / US-14
+const productRoute = require('./src/routes/product.routes'); // US-14
+const errorHandler = require('./src/middlewares/errorHandler');
+const path = require('node:path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,6 +32,15 @@ app.get('/health', (req, res) => {
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
+app.use('/api/categories', categoryRoute); // US-11 / US-14
+app.use('/api/products', productRoute); // US-14
+
+// US-14: product images saved by multer are served as static files,
+// e.g. http://localhost:3000/uploads/products/1700000000-123.png
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Must stay AFTER the routes: every next(err) ends up here (JSON error message)
+app.use(errorHandler);
 
 async function start() {
   await connectDatabase();
