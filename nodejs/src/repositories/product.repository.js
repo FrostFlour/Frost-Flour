@@ -14,3 +14,13 @@ exports.findAvailableByIds = (ids) =>
   Product.find({ _id: { $in: ids }, isAvailable: true });
 
 exports.findAvailable = () => Product.find({ isAvailable: true }).sort({ createdAt: -1 });
+
+// US-10: how many products belong to each category (one query for the whole list)
+exports.countByCategory = () =>
+  Product.aggregate([{ $group: { _id: "$category", count: { $sum: 1 } } }]);
+
+// US-12 / US-13: products linked to one category
+exports.countForCategory = (categoryId) => Product.countDocuments({ category: categoryId });
+
+exports.findNamesByCategory = (categoryId, limit = 6) =>
+  Product.find({ category: categoryId }).select("name").sort({ name: 1 }).limit(limit);

@@ -1,5 +1,6 @@
 // US-11: form used by an Agent to create a category.
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { createCategory } from "../../api/category.api";
 
 export default function CategoryFormPage() {
@@ -45,7 +46,9 @@ export default function CategoryFormPage() {
   return (
     <section className="agent-page">
       <h1>Create category</h1>
-      <p className="agent-subtitle">Bakery workspace</p>
+      <p className="agent-subtitle">
+        Bakery workspace · <Link to="/agent/categories">All categories</Link>
+      </p>
 
       <div className="agent-columns">
         <div className="agent-card">

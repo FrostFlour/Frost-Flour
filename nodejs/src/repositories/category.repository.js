@@ -1,4 +1,4 @@
-// US-11 / US-14: all database access for categories.
+// US-10 / US-11 / US-12 / US-13 / US-14: all database access for categories.
 const Category = require("../models/category.model");
 
 // Same "ignore case" rule as the unique index in category.model.js
@@ -15,3 +15,10 @@ exports.findById = (id) => Category.findById(id);
 
 // US-14: all categories sorted by name (for the <select> in the product form)
 exports.findAll = () => Category.find().sort({ name: 1 });
+
+// US-12: replace the name and description, and return the updated category
+exports.updateById = (id, data) =>
+  Category.findByIdAndUpdate(id, data, { new: true, runValidators: true });
+
+// US-13: remove one category
+exports.deleteById = (id) => Category.findByIdAndDelete(id);
