@@ -2,6 +2,7 @@
 // A form that sends a file uses the "multipart/form-data" format, which
 // express.json() cannot read. multer reads it, saves the file on disk,
 // puts the file info in req.file and the text fields in req.body.
+const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
 const multer = require("multer");
@@ -15,11 +16,15 @@ const ALLOWED_TYPES = {
 };
 
 // 1. WHERE and UNDER WHICH NAME the file is saved: nodejs/uploads/products/
+const UPLOAD_DIR = path.join(__dirname, "..", "..", "uploads", "products");
+fs.mkdirSync(UPLOAD_DIR, { recursive: true }); // create the folder if it is missing
+
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, "..", "..", "uploads", "products"),
+  destination: UPLOAD_DIR,
   filename: (req, file, cb) => {
-    // Unique name (date + random part) so two images never overwrite each other
-    const name = `${Date.now()}-${crypto.randomInt(1e9)}${ALLOWED_TYPES[file.mimetype]}`;
+    // Random unique name (UUID) so two images never overwrite each other
+    // and names cannot be guessed
+    const name = `${crypto.randomUUID()}${ALLOWED_TYPES[file.mimetype]}`;
     cb(null, name);
   },
 });
