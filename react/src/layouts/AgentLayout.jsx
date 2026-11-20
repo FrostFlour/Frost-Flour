@@ -44,7 +44,7 @@ export default function AgentLayout() {
         {/* NavLink adds the "active" class to the link of the current page */}
         <nav className="agent-menu">
           <NavLink to="/agent/products/new">Products</NavLink>
-          <NavLink to="/agent/categories/new">Categories</NavLink>
+          <NavLink to="/agent/categories">Categories</NavLink>
           <NavLink to="/agent/agents/new">Team</NavLink>
         </nav>
 
