@@ -7,7 +7,7 @@ import DashboardRoutes from './pages/Dashboard.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Frost-Flour">
       <DashboardRoutes />
     </BrowserRouter>
   </StrictMode>,
