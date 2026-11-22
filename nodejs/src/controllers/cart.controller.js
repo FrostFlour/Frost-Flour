@@ -45,7 +45,7 @@ function saveCart(res, cart) {
   });
 }
 
-async function presentCart(cart) {
+async function displayCart(cart) {
   const ids = cart.items.map((item) => item.productId);
   const products = ids.length ? await productRepository.findAvailableByIds(ids) : [];
   const productsById = new Map(products.map((product) => [product._id.toString(), product]));
@@ -63,7 +63,7 @@ async function presentCart(cart) {
 
 exports.getCart = async (req, res, next) => {
   try {
-    res.json({ cart: await presentCart(readCart(req)) });
+    res.json({ cart: await displayCart(readCart(req)) });
   } catch (err) {
     next(err);
   }
@@ -87,8 +87,29 @@ exports.addItem = async (req, res, next) => {
     saveCart(res, cart);
     res.status(201).json({
       message: "Product added to cart",
-      cart: await presentCart(cart),
+      cart: await displayCart(cart),
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateItem = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    const quantity = Number(req.body?.quantity);
+
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
+      throw new AppError("Quantity must be a whole number between 1 and 20", 400);
+    }
+
+    const cart = readCart(req);
+    const item = cart.items.find((item) => item.productId === productId);
+    if (!item) throw new AppError("Product is not in the cart", 404);
+
+    item.quantity = quantity;
+    saveCart(res, cart);
+    res.json({ message: "Quantity updated", cart: await displayCart(cart) });
   } catch (err) {
     next(err);
   }
@@ -99,7 +120,7 @@ exports.removeItem = async (req, res, next) => {
     const cart = readCart(req);
     cart.items = cart.items.filter((item) => item.productId !== req.params.productId);
     saveCart(res, cart);
-    res.json({ message: "Product removed from cart", cart: await presentCart(cart) });
+    res.json({ message: "Product removed from cart", cart: await displayCart(cart) });
   } catch (err) {
     next(err);
   }

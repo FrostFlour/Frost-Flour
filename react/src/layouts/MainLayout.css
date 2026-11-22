@@ -217,6 +217,16 @@
   color: var(--plum);
 }
 
+.cart-row input {
+  width: 64px;
+  margin: 0 6px;
+  padding: 4px 6px;
+  color: var(--plum);
+  background: white;
+  border: 1px solid #f4c8d9;
+  border-radius: 6px;
+}
+
 .main-footer {
   background: var(--panel-pink);
   border-top: 2px solid var(--pink);
