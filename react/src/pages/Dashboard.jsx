@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import App from '../App.jsx';
 import MainLayout from '../layouts/MainLayout.jsx';
 import CatalogPage from './client/CatalogPage.jsx';
+import ProductPage from './client/ProductPage.jsx';
 import CartPage from './client/CartPage.jsx';
 import ProfilePage from './client/ProfilePage.jsx';
 import ChangePasswordPage from './client/ChangePasswordPage.jsx';
@@ -34,6 +35,7 @@ export default function DashboardRoutes() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="catalog" element={<CatalogPage />} />
+        <Route path="products/:id" element={<ProductPage />} />
         <Route path="cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="change-password" element={<ChangePasswordPage />} />

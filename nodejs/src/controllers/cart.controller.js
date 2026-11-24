@@ -19,7 +19,14 @@ const emptyCart = (userId) => ({
 });
 
 function readCart(req) {
-  const saved = req.signedCookies?.[CART_COOKIE];
+  let saved = req.signedCookies?.[CART_COOKIE];
+  if (typeof saved === "string") {
+    try {
+      saved = JSON.parse(saved);
+    } catch {
+      saved = null;
+    }
+  }
   const userId = req.user._id.toString();
 
   if (!saved || typeof saved !== "object" || saved.userId !== userId) {

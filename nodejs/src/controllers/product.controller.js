@@ -13,6 +13,21 @@ exports.listAvailable = async (req, res, next) => {
   }
 };
 
+exports.getProduct = async (req, res, next) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      throw new AppError("Product not found", 404);
+    }
+
+    const product = await productRepository.findById(req.params.id);
+    if (!product) throw new AppError("Product not found", 404);
+
+    res.json({ product });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // ---------------------------------------------------------------------------
 // US-14: an Agent creates a product (with an optional image).
 // Route: POST /api/products   (multipart/form-data, read by middlewares/upload.js)
