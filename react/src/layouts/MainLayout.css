@@ -199,6 +199,25 @@
 
 .product-card button:disabled { opacity: .6; cursor: wait; }
 
+.product-details-link,
+.back-link a {
+  color: var(--pink-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.product-detail { max-width: 520px; }
+
+.shop-error button {
+  margin-left: 8px;
+  padding: 4px 10px;
+  color: white;
+  background: var(--pink-dark);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 .cart-row,
 .cart-total {
   display: flex;

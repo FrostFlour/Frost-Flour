@@ -13,6 +13,8 @@ exports.findAvailableById = (id) => Product.findOne({ _id: id, isAvailable: true
 exports.findAvailableByIds = (ids) =>
   Product.find({ _id: { $in: ids }, isAvailable: true });
 
+exports.findById = (id) => Product.findById(id).populate("category", "name");
+
 exports.findAvailable = () => Product.find({ isAvailable: true }).sort({ createdAt: -1 });
 
 // US-10: how many products belong to each category (one query for the whole list)

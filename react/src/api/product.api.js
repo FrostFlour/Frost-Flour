@@ -8,3 +8,5 @@ import { apiFetch } from "./client";
 export const createProduct = async (formData) => {
   return apiFetch("/api/products", { method: "POST", body: formData });
 };
+
+export const getProduct = (id) => apiFetch(`/api/products/${id}`);
