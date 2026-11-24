@@ -70,7 +70,7 @@ export default function CartPage() {
                   <input
                     type="number"
                     min="1"
-                    max="20"
+                    max="12"
                     value={item.quantity}
                     onChange={(event) => handleQuantityChange(item.product._id, event)}
                     aria-label={`Quantity for ${item.product.name}`}
