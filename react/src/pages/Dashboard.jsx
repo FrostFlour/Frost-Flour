@@ -11,7 +11,6 @@ const AGENT_ROLES = ['Agent'];
 import CatalogPage from './client/CatalogPage.jsx';
 import ProductPage from './client/ProductPage.jsx';
 import CartPage from './client/CartPage.jsx';
-import ProfilePage from './client/ProfilePage.jsx';
 import ChangePasswordPage from './client/ChangePasswordPage.jsx';
 import AgentLayout from '../layouts/AgentLayout.jsx';
 import { getCurrentUser } from '../api/auth.js';
