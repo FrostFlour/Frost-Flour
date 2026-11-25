@@ -25,6 +25,9 @@ export const changePassword = async (data) => {
   });
 };
 
+export const listClients = async () => {
+  return apiFetch("/api/users/clients");
+}
 // US-08: an Agent creates another Agent account.
 // data = { firstName, lastName, email, phone, password }
 export const createAgent = async (data) => {

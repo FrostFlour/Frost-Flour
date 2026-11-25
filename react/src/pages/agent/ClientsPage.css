@@ -1,0 +1,132 @@
+.clients-page {
+  min-height: 100vh;
+  padding: 60px 20px 40px;
+  background: var(--cream, #fffaf5);
+  color: var(--plum, #633d54);
+}
+
+.clients-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.clients-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.clients-header h1 {
+  margin: 0;
+  color: var(--plum, #633d54);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -1.2px;
+}
+
+.clients-count {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--pink, #f2a2c3);
+  color: var(--plum, #633d54);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.clients-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 14px 28px rgba(205, 132, 160, 0.13);
+  overflow-x: auto;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.clients-table th {
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--pink, #f2a2c3);
+  color: var(--plum, #633d54);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.clients-table td {
+  padding: 14px;
+  border-bottom: 1px solid #f7e6ee;
+  color: var(--plum, #633d54);
+}
+
+.clients-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.clients-table tbody tr:hover {
+  background: #fffbf8;
+}
+
+.client-name {
+  font-weight: 700;
+}
+
+.clients-empty,
+.clients-error {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 34px;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(205, 132, 160, 0.13);
+}
+
+.clients-empty p {
+  margin: 0;
+  color: var(--muted-plum, #806174);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.clients-error h2 {
+  margin: 0 0 10px;
+  color: var(--pink-dark, #b52e68);
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.clients-error p {
+  margin: 0 0 20px;
+  color: var(--muted-plum, #806174);
+  font-size: 14px;
+}
+
+.clients-retry-button {
+  padding: 11px 28px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--plum, #633d54);
+  background: var(--pink, #f2a2c3);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.clients-retry-button:hover {
+  background: #ed91b7;
+}
+
+.clients-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--muted-plum, #806174);
+  font-size: 15px;
+  font-weight: 600;
+}

@@ -13,6 +13,7 @@ router.get("/me", protect, getMe);
 router.put("/me", protect, updateMe);
 router.put("/me/password", protect, changePassword);
 router.put("/clients/me", protect, updateClient);
+router.get("/clients", protect, restrictTo("Agent"), getClients);
 
 // US-08: POST /api/users/agents
 // The middlewares run one after the other, from left to right:

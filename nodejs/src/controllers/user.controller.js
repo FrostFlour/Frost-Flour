@@ -84,6 +84,13 @@ exports.changePassword = async (req, res, next) => {
   }
 };
 
+exports.getClients = async (req, res, next) => {
+  try {
+    const clients = await userRepository.findClients();
+    res.json({ clients });
+  } catch (err) {
+    next(err);
+  }}
 // ---------------------------------------------------------------------------
 // US-08: a logged-in Agent creates another Agent account.
 // Route: POST /api/users/agents
