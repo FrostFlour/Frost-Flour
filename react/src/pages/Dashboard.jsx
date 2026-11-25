@@ -16,8 +16,6 @@ import CategoryDeletePage from './agent/CategoryDeletePage.jsx';
 import ProductFormPage from './agent/ProductFormPage.jsx';
 import ProductArchivePage from './agent/ProductArchivePage.jsx';
 
-const AGENT_ROLES = ['Agent'];
-
 export default function DashboardRoutes() {
   return (
     <Routes>
