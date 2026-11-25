@@ -37,7 +37,7 @@ export default function DashboardRoutes() {
         <Route path="categories/new" element={<CategoryFormPage />} /> {/* US-11 */}
         <Route path="categories/:id/edit" element={<CategoryEditPage />} /> {/* US-12 */}
         <Route path="categories/:id/delete" element={<CategoryDeletePage />} /> {/* US-13 */}
-        <Route path="products" element={<ProductsPage />} /> {/* US-18 */}
+        <Route path="products" element={<ProductPage />} /> {/* US-18 */}
         <Route path="products/new" element={<ProductFormPage />} /> {/* US-14 */}
         <Route path="products/:id/edit" element={<ProductFormPage />} /> {/* US-16 */}
         <Route path="products/:id/archive" element={<ProductArchivePage />} /> {/* US-17 */}
