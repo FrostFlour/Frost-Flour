@@ -5,7 +5,6 @@ import AgentLayout from '../layouts/AgentLayout.jsx';
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import ProfilePage from './client/ProfilePage.jsx';
 import ChangePasswordPage from './client/ChangePasswordPage.jsx';
-import ClientsPage from './agent/ClientsPage.jsx';
 import CatalogPage from './client/CatalogPage.jsx';
 import ProductPage from './client/ProductPage.jsx';
 import CartPage from './client/CartPage.jsx';
@@ -15,8 +14,7 @@ import CategoryListPage from './agent/CategoryListPage.jsx';
 import CategoryEditPage from './agent/CategoryEditPage.jsx';
 import CategoryDeletePage from './agent/CategoryDeletePage.jsx';
 import ProductFormPage from './agent/ProductFormPage.jsx';
-
-const AGENT_ROLES = ['Agent'];
+import ProductArchivePage from './agent/ProductArchivePage.jsx';
 
 export default function DashboardRoutes() {
   return (
@@ -32,17 +30,17 @@ export default function DashboardRoutes() {
       </Route>
 
       {/* Agent space: every page below is shown inside AgentLayout (<Outlet />) */}
-      <Route element={<ProtectedRoute allowedRoles={AGENT_ROLES} />}>
-        <Route path="/agent" element={<AgentLayout />}>
-          <Route index element={<Navigate to="products/new" replace />} />
-          <Route path="clients" element={<ClientsPage />} />
-          <Route path="agents/new" element={<CreateAgentPage />} /> {/* US-08 */}
-          <Route path="categories" element={<CategoryListPage />} /> {/* US-10 */}
-          <Route path="categories/new" element={<CategoryFormPage />} /> {/* US-11 */}
-          <Route path="categories/:id/edit" element={<CategoryEditPage />} /> {/* US-12 */}
-          <Route path="categories/:id/delete" element={<CategoryDeletePage />} /> {/* US-13 */}
-          <Route path="products/new" element={<ProductFormPage />} /> {/* US-14 */}
-        </Route>
+      <Route path="/agent" element={<AgentLayout />}>
+        <Route index element={<Navigate to="products/new" replace />} />
+        <Route path="agents/new" element={<CreateAgentPage />} /> {/* US-08 */}
+        <Route path="categories" element={<CategoryListPage />} /> {/* US-10 */}
+        <Route path="categories/new" element={<CategoryFormPage />} /> {/* US-11 */}
+        <Route path="categories/:id/edit" element={<CategoryEditPage />} /> {/* US-12 */}
+        <Route path="categories/:id/delete" element={<CategoryDeletePage />} /> {/* US-13 */}
+        <Route path="products" element={<ProductPage />} /> {/* US-18 */}
+        <Route path="products/new" element={<ProductFormPage />} /> {/* US-14 */}
+        <Route path="products/:id/edit" element={<ProductFormPage />} /> {/* US-16 */}
+        <Route path="products/:id/archive" element={<ProductArchivePage />} /> {/* US-17 */}
       </Route>
 
       <Route path="/login" element={<App />} />

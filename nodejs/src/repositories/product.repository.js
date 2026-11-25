@@ -17,6 +17,17 @@ exports.findById = (id) => Product.findById(id).populate("category", "name");
 
 exports.findAvailable = (filter) => Product.find(filter).sort({ createdAt: -1 });
 
+// US-18: the agent list includes archived products. The category name is
+// populated so the table can show it without another query per product.
+exports.findAll = () => Product.find().populate("category", "name").sort({ createdAt: -1 });
+
+// US-16: one product, including archived ones, for the edit form.
+exports.findById = (id) => Product.findById(id).populate("category", "name");
+
+// US-16 / US-17: save the fields edited by the agent (or the new availability).
+exports.updateById = (id, data) =>
+  Product.findByIdAndUpdate(id, data, { new: true, runValidators: true }).populate("category", "name");
+
 // US-10: how many products belong to each category (one query for the whole list)
 exports.countByCategory = () =>
   Product.aggregate([{ $group: { _id: "$category", count: { $sum: 1 } } }]);
