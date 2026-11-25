@@ -7,12 +7,11 @@ export default function ClientsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const loadClients = async () => {
-    setLoading(true);
-    setError(null);
+  const fetchClients = async () => {
     try {
       const data = await listClients();
       setClients(data.clients || []);
+      setError(null);
     } catch (err) {
       setError(err.message || "Failed to load client accounts");
     } finally {
@@ -21,9 +20,15 @@ export default function ClientsPage() {
   };
 
   useEffect(() => {
-    loadClients();
+    fetchClients();
   }, []);
 
+  const handleRetry = () => {
+    setLoading(true);
+    setError(null);
+    fetchClients();
+  };
+  
   if (loading) {
     return (
       <div className="clients-page">
@@ -41,7 +46,7 @@ export default function ClientsPage() {
           <div className="clients-error">
             <h2>Error</h2>
             <p>{error}</p>
-            <button onClick={loadClients} className="clients-retry-button">
+            <button onClick={handleRetry} className="clients-retry-button">
               Try Again
             </button>
           </div>
