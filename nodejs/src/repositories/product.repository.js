@@ -15,7 +15,7 @@ exports.findAvailableByIds = (ids) =>
 
 exports.findById = (id) => Product.findById(id).populate("category", "name");
 
-exports.findAvailable = () => Product.find({ isAvailable: true }).sort({ createdAt: -1 });
+exports.findAvailable = (filter) => Product.find(filter).sort({ createdAt: -1 });
 
 // US-10: how many products belong to each category (one query for the whole list)
 exports.countByCategory = () =>

@@ -146,6 +146,37 @@
 .shop-error { color: #a52c4b; }
 .shop-message { color: #23734b; }
 
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.catalog-filters select,
+.catalog-filters input {
+  padding: 9px 12px;
+  border: 1px solid #f4c8d9;
+  border-radius: 7px;
+  background: white;
+  color: var(--plum);
+}
+
+.catalog-filters input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.catalog-filters button {
+  padding: 9px 16px;
+  color: white;
+  background: var(--pink-dark);
+  border: 0;
+  border-radius: 7px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
