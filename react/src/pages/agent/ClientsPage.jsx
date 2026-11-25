@@ -7,26 +7,31 @@ export default function ClientsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchClients = async () => {
+  useEffect(() => {
+    listClients()
+      .then((data) => {
+        setClients(data.clients || []);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message || "Failed to load client accounts");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const handleRetry = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const data = await listClients();
       setClients(data.clients || []);
-      setError(null);
     } catch (err) {
       setError(err.message || "Failed to load client accounts");
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchClients();
-  }, []);
-
-  const handleRetry = () => {
-    setLoading(true);
-    setError(null);
-    fetchClients();
   };
   
   if (loading) {
