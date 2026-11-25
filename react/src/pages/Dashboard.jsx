@@ -14,6 +14,8 @@ import CategoryListPage from './agent/CategoryListPage.jsx';
 import CategoryEditPage from './agent/CategoryEditPage.jsx';
 import CategoryDeletePage from './agent/CategoryDeletePage.jsx';
 import ProductFormPage from './agent/ProductFormPage.jsx';
+import ProductsPage from './agent/ProductsPage.jsx';
+import ProductArchivePage from './agent/ProductArchivePage.jsx';
 
 function ProtectedRoute({ children }) {
   const [state, setState] = useState('loading');
@@ -46,7 +48,10 @@ export default function DashboardRoutes() {
         <Route path="categories/new" element={<CategoryFormPage />} /> {/* US-11 */}
         <Route path="categories/:id/edit" element={<CategoryEditPage />} /> {/* US-12 */}
         <Route path="categories/:id/delete" element={<CategoryDeletePage />} /> {/* US-13 */}
+        <Route path="products" element={<ProductsPage />} /> {/* US-18 */}
         <Route path="products/new" element={<ProductFormPage />} /> {/* US-14 */}
+        <Route path="products/:id/edit" element={<ProductFormPage />} /> {/* US-16 */}
+        <Route path="products/:id/archive" element={<ProductArchivePage />} /> {/* US-17 */}
       </Route>
       <Route path="/login" element={<App />} />
       <Route path="/" element={<Navigate to="/login" replace />} />

@@ -43,7 +43,7 @@ export default function AgentLayout() {
         <p className="agent-menu-title">BAKERY WORKSPACE</p>
         {/* NavLink adds the "active" class to the link of the current page */}
         <nav className="agent-menu">
-          <NavLink to="/agent/products/new">Products</NavLink>
+          <NavLink to="/agent/products">Products</NavLink>
           <NavLink to="/agent/categories">Categories</NavLink>
           <NavLink to="/agent/agents/new">Team</NavLink>
         </nav>
