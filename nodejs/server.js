@@ -1,33 +1,11 @@
 require("dotenv").config();
 
 const http = require('node:http');
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const { connectDatabase, disconnectDatabase, isDatabaseConnected } = require('./src/config/db');
-const authRoute = require('./src/routes/authRoute');
-const userRoute = require('./src/routes/user.routes');
+const { connectDatabase, disconnectDatabase } = require('./src/config/db');
+// The app (middlewares + routes) is built in src/app.js
+const app = require('./src/app');
 
-const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Browser origins allowed to call the API (comma-separated list in .env).
-// A GitHub Pages origin is only the domain: https://frostflour.github.io (no repo path).
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,https://frostflour.github.io')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
-app.use(cors({ origin: allowedOrigins, credentials: true }));
-app.use(express.json());
-app.use(cookieParser());
-
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', database: isDatabaseConnected() ? 'connected' : 'disconnected' });
-});
-
-app.use('/api/auth', authRoute);
-app.use('/api/users', userRoute);
 
 async function start() {
   await connectDatabase();
@@ -36,7 +14,7 @@ async function start() {
 
   server.listen(PORT, () => {
     console.log(`Frost & Flour API listening on port ${PORT}`);
-    console.log(`CORS allowed origins: ${allowedOrigins.join(', ')}`);
+    console.log(`CORS allowed origins: ${app.allowedOrigins.join(', ')}`);
   });
 
   // Ctrl+C locally (SIGINT) or stop from the hosting service (SIGTERM)

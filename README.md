@@ -8,24 +8,22 @@ Online pastry shop: clients browse the catalog, order and pay online; agents man
 
 ## Getting started (first time)
 
-**Install once on your PC:** Git, Node.js 20+ (LTS), VS Code, Docker Desktop.
-You do NOT install MongoDB itself: Docker runs it. (Optional: MongoDB Compass to look at the data.)
+**Install once on your PC:** Git, Node.js 20+ (LTS), and VS Code.
+You also need a MongoDB database, such as a MongoDB Atlas cluster. (Optional: MongoDB Compass to look at the data.)
 
 ```bash
 git clone <repo-url>
 cd Frost-Flour
 
-# 1. Database (Docker Desktop must be open)
-docker compose up -d                 # MongoDB on localhost:27017
-
-# 2. API — terminal 1
+# 1. API — terminal 1
 cd nodejs
 npm install                          # installs the back-end packages (node_modules)
 cp .env.example .env                 # Windows CMD: copy .env.example .env
+# Set MONGODB_URI in .env to your MongoDB connection string
 npm run seed                         # first Agent + sample categories
 npm run dev                          # http://localhost:5000/api/health
 
-# 3. Front end — terminal 2
+# 2. Front end — terminal 2
 cd react
 npm install                          # installs the front-end packages
 npm run dev                          # http://localhost:5173
@@ -40,7 +38,6 @@ Test agent: `agent@frostflour.tn` / `agent123` (from `.env`).
 
 ```bash
 git pull
-docker compose up -d                 # if MongoDB is not running
 cd nodejs && npm install && npm run dev
 cd react  && npm install && npm run dev   # (other terminal)
 ```
@@ -52,7 +49,7 @@ Run `npm install` again only when `package.json` changed after a pull.
 - New setting? Add it to `.env.example` (with a fake value) and tell the team.
 - Each person has their own local database: data does not sync through Git.
   To share one database, use MongoDB Atlas and put its URL in `MONGODB_URI`.
-- Stop the database: `docker compose stop`. Reset it completely: `docker compose down -v` then `npm run seed`.
+- To reset the database, use your MongoDB provider's tools, then run `npm run seed`.
 
 ## API structure (`nodejs/src`)
 

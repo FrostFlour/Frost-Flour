@@ -74,8 +74,9 @@ export default function App() {
 
     try {
       if (isLogin) {
-        await loginUser({ email: formData.email, password: formData.password });
-        navigate('/dashboard');
+        const data = await loginUser({ email: formData.email, password: formData.password });
+        // An Agent goes to the Agent space (US-08/11/14), a Client to the catalog
+        navigate(data.user.role === 'Agent' ? '/agent' : '/catalog');
         return;
       }
 

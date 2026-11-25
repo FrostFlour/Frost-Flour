@@ -21,3 +21,9 @@ exports.setTokenCookie = (res, token) => {
 };
 
 exports.clearTokenCookie = (res) => res.clearCookie("token", cookieOptions);
+
+exports.clearCartCookie = (res) =>
+  res.clearCookie("cart", {
+    ...cookieOptions,
+    signed: true,
+  });
