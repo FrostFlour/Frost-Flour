@@ -10,3 +10,4 @@ exports.findById = (id) => User.findById(id);
 exports.existsByEmail = (email) => User.exists({ email });
 
 exports.createClient = (data) => Client.create(data);
+exports.findClients = () => Client.find().sort({ createdAt: -1 });

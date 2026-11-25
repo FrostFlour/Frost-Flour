@@ -82,3 +82,12 @@ exports.changePassword = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getClients = async (req, res, next) => {
+  try {
+    const clients = await userRepository.findClients();
+    res.json({ clients });
+  } catch (err) {
+    next(err);
+  }
+};

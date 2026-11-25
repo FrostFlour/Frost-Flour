@@ -24,3 +24,7 @@ export const changePassword = async (data) => {
     body: data,
   });
 };
+
+export const listClients = async () => {
+  return apiFetch("/api/users/clients");
+};
