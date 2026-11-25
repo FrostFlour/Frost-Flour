@@ -13,7 +13,9 @@ exports.findAvailableById = (id) => Product.findOne({ _id: id, isAvailable: true
 exports.findAvailableByIds = (ids) =>
   Product.find({ _id: { $in: ids }, isAvailable: true });
 
-exports.findAvailable = () => Product.find({ isAvailable: true }).sort({ createdAt: -1 });
+exports.findById = (id) => Product.findById(id).populate("category", "name");
+
+exports.findAvailable = (filter) => Product.find(filter).sort({ createdAt: -1 });
 
 // US-18: the agent list includes archived products. The category name is
 // populated so the table can show it without another query per product.

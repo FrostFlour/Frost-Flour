@@ -13,6 +13,7 @@ const upload = require("../middlewares/upload");
 const { ROLES } = require("../models/enums");
 
 router.get("/", listAvailable);
+router.get("/:id", getProduct);
 
 // US-18: GET /api/products/all -> Agent only, archived products included.
 // It must be declared before /:id so "all" is not read as a product id.

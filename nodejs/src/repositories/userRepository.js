@@ -12,6 +12,7 @@ exports.findById = (id) => User.findById(id);
 exports.existsByEmail = (email) => User.exists({ email });
 
 exports.createClient = (data) => Client.create(data);
+exports.findClients = () => Client.find().sort({ createdAt: -1 });
 
 // US-08: saves a new user with role "Agent".
 // Agent is a Mongoose "discriminator" of User (see models/Agent.js), so the

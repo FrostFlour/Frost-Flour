@@ -4,6 +4,7 @@ const productRepository = require("../repositories/product.repository");
 
 const CART_COOKIE = "cart";
 const CART_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+const MAX_QUANTITY = 12;
 const cookieOptions = {
   httpOnly: true,
   signed: true,
@@ -18,7 +19,14 @@ const emptyCart = (userId) => ({
 });
 
 function readCart(req) {
-  const saved = req.signedCookies?.[CART_COOKIE];
+  let saved = req.signedCookies?.[CART_COOKIE];
+  if (typeof saved === "string") {
+    try {
+      saved = JSON.parse(saved);
+    } catch {
+      saved = null;
+    }
+  }
   const userId = req.user._id.toString();
 
   if (!saved || typeof saved !== "object" || saved.userId !== userId) {
@@ -81,8 +89,14 @@ exports.addItem = async (req, res, next) => {
 
     const cart = readCart(req);
     const existing = cart.items.find((item) => item.productId === productId);
-    if (existing) existing.quantity += 1;
-    else cart.items.push({ productId, quantity: 1 });
+    if (existing) {
+      if (existing.quantity >= MAX_QUANTITY) {
+        throw new AppError(`The maximum quantity for one product is ${MAX_QUANTITY}`, 400);
+      }
+      existing.quantity += 1;
+    } else {
+      cart.items.push({ productId, quantity: 1 });
+    }
 
     saveCart(res, cart);
     res.status(201).json({
@@ -99,8 +113,8 @@ exports.updateItem = async (req, res, next) => {
     const { productId } = req.params;
     const quantity = Number(req.body?.quantity);
 
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) {
-      throw new AppError("Quantity must be a whole number between 1 and 20", 400);
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > MAX_QUANTITY) {
+      throw new AppError(`Quantity must be a whole number between 1 and ${MAX_QUANTITY}`, 400);
     }
 
     const cart = readCart(req);

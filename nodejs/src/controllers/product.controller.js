@@ -21,8 +21,42 @@ async function deleteStoredImage(image) {
 
 exports.listAvailable = async (req, res, next) => {
   try {
-    const products = await productRepository.findAvailable();
+    const filter = { isAvailable: true };
+    const category = String(req.query.category || "").trim();
+    const search = String(req.query.search || "").trim();
+
+    if (category) {
+      if (!mongoose.isValidObjectId(category)) {
+        return res.json({ products: [] });
+      }
+      filter.category = category;
+    }
+
+    if (search) {
+      const text = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      filter.$or = [
+        { name: { $regex: text, $options: "i" } },
+        { description: { $regex: text, $options: "i" } },
+      ];
+    }
+
+    const products = await productRepository.findAvailable(filter);
     res.json({ products });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProduct = async (req, res, next) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      throw new AppError("Product not found", 404);
+    }
+
+    const product = await productRepository.findById(req.params.id);
+    if (!product) throw new AppError("Product not found", 404);
+
+    res.json({ product });
   } catch (err) {
     next(err);
   }
