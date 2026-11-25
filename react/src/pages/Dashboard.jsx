@@ -5,7 +5,6 @@ import AgentLayout from '../layouts/AgentLayout.jsx';
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import ProfilePage from './client/ProfilePage.jsx';
 import ChangePasswordPage from './client/ChangePasswordPage.jsx';
-import ClientsPage from './agent/ClientsPage.jsx';
 import CatalogPage from './client/CatalogPage.jsx';
 import ProductPage from './client/ProductPage.jsx';
 import CartPage from './client/CartPage.jsx';
@@ -15,7 +14,6 @@ import CategoryListPage from './agent/CategoryListPage.jsx';
 import CategoryEditPage from './agent/CategoryEditPage.jsx';
 import CategoryDeletePage from './agent/CategoryDeletePage.jsx';
 import ProductFormPage from './agent/ProductFormPage.jsx';
-import ProductsPage from './agent/ProductsPage.jsx';
 import ProductArchivePage from './agent/ProductArchivePage.jsx';
 
 const AGENT_ROLES = ['Agent'];
