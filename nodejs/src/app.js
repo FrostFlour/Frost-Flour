@@ -11,6 +11,7 @@ const userRoutes = require("./routes/user.routes");
 const categoryRoutes = require("./routes/category.routes"); // US-11 / US-14
 const productRoutes = require("./routes/product.routes"); // US-14
 const cartRoutes = require("./routes/cart.routes");
+const paymentRoutes = require("./routes/payment.routes");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
@@ -23,6 +24,7 @@ const allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:5173,https
   .filter(Boolean);
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use("/api/payments/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
 // The secret is needed for signed cookies (login token and cart)
 app.use(cookieParser(process.env.COOKIE_SECRET || "development-cookie-secret"));
@@ -36,6 +38,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes); // US-11 / US-14
 app.use("/api/products", productRoutes); // US-14
 app.use("/api/cart", cartRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // US-14: product images saved by multer are served as static files,
 // e.g. http://localhost:3000/uploads/products/<random-name>.png
