@@ -8,6 +8,7 @@ import ChangePasswordPage from './client/ChangePasswordPage.jsx';
 import CatalogPage from './client/CatalogPage.jsx';
 import ProductPage from './client/ProductPage.jsx';
 import CartPage from './client/CartPage.jsx';
+import PaymentReturnPage from './client/PaymentReturnPage.jsx';
 import CreateAgentPage from './agent/CreateAgentPage.jsx';
 import CategoryFormPage from './agent/CategoryFormPage.jsx';
 import CategoryListPage from './agent/CategoryListPage.jsx';
@@ -26,6 +27,7 @@ export default function DashboardRoutes() {
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="products/:id" element={<ProductPage />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="payment/return" element={<PaymentReturnPage />} />
         </Route>
       </Route>
 

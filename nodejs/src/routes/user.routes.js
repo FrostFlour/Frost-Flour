@@ -5,6 +5,7 @@ const {
   updateClient,
   changePassword,
   createAgent,
+  getClients,
 } = require("../controllers/user.controller");
 const { protect, restrictTo } = require("../middlewares/auth");
 const { ROLES } = require("../models/enums");
